@@ -1,4 +1,4 @@
-#async-replace
+#async-replace[![build status](https://secure.travis-ci.org/kesla/async-replace.png)](http://travis-ci.org/kesla/async-replace)
 
 Run replace on a string and update it asynchronous.
 
