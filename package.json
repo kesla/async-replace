@@ -1,6 +1,6 @@
 {
   "name": "async-replace",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Run replace on a string and update it asynchronous",
   "main": "async-replace.js",
   "directories": {
