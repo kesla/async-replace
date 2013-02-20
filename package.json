@@ -1,0 +1,29 @@
+{
+  "name": "async-replace",
+  "version": "0.0.0",
+  "description": "Run replace on a string and update it asynchronous",
+  "main": "async-replace.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "async": "~0.1.22"
+  },
+  "devDependencies": {
+    "tap": "~0.4.0"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kesla/async-replace.git"
+  },
+  "keywords": [
+    "string",
+    "async",
+    "replace"
+  ],
+  "author": "David Björklund <david.bjorklund@gmail.com>",
+  "license": "MIT"
+}
