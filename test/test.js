@@ -3,7 +3,23 @@ var test = require('tap').test;
 var asyncReplace = require('../async-replace');
 
 test('async-replace', function(t) {
-    // t.plan(14);
+    t.test('no match local', function(t) {
+        asyncReplace('aaa', /(\d)/, function() {}, function(err, newString) {
+            t.notOk(err, 'should not error');
+            t.equal(newString, 'aaa');
+            t.end();
+        });
+    });
+
+    t.test('no match global', function(t) {
+        asyncReplace('aaa', /(\d)/g, function() {}, function(err, newString) {
+            t.notOk(err, 'should not error');
+            t.equal(newString, 'aaa');
+            t.end();
+        });
+    });
+
+
     t.test('simple local', function(t) {
         asyncReplace(' foo ', /(fo)(.)/, function(match, p1, p2, offset, input, callback) {
             t.equal(match, 'foo');
@@ -54,7 +70,7 @@ test('async-replace', function(t) {
             });
         }, function(err, newString) {
             t.equal(err, null);
-            t.equal(newString, '1Ofo2Zfo3');        
+            t.equal(newString, '1Ofo2Zfo3');
             t.end();
         });
     });

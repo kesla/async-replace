@@ -9,6 +9,8 @@ function toLocal(regexp) {
 
 function replaceLocal(string, regexp, replacer, callback) {
     var matched = string.match(regexp);
+    if (!matched)
+        return callback(null, string);
 
     var args = matched.slice();
     args.push(matched.index);
@@ -26,6 +28,9 @@ module.exports = function(string, regexp, replacer, callback) {
     if (!regexp.global) return replaceLocal(string, regexp, replacer, callback);
 
     var matched = string.match(regexp);
+    if (!matched)
+        return callback(null, string);
+
     // matched is an array of matched strings
     var result = [];
     var i = 0;
@@ -50,7 +55,7 @@ module.exports = function(string, regexp, replacer, callback) {
                     done(null);
                 });
                 replacer.apply(null, args);
-            });            
+            });
         })(i, nextIndex, subString);
 
         index = nextIndex + subString.length;
