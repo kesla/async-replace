@@ -28,8 +28,14 @@ module.exports = function(string, regexp, replacer, callback) {
     if (!regexp.global) return replaceLocal(string, regexp, replacer, callback);
 
     var matched = string.match(regexp);
-    if (!matched)
-        return callback(null, string);
+    // If there were no matches, the callback may be called and nothing further has to happen. According to node's
+    // documentation "it is very important for APIs to be either 100% synchronous or 100% asynchronous". process.nextTick is
+    // used to ensure that this function is asynchronous, even if there are no matches.
+    // 	(Source: http://nodejs.org/api/process.html#process_process_nexttick_callback)
+    if (!matched) {
+        process.nextTick(callback.bind(this, null, string));
+        return;
+    }
 
     // matched is an array of matched strings
     var result = [];
